@@ -41,13 +41,11 @@ class Matrix(object):
         
         det=0.0
         if self.h > 1:
-            #2x2 matrix
-            #for matrix self=((a,b),(c,d))
+            #for a 2x2 matrix: self=((a,b),(c,d))
             #det=ad-bc
             det=self[0][0]*self[1][1]-self[0][1]*self[1][0]
         else:
-            #1*1 matrix
-            #for matrix self=a
+            #for a 1*1 matrix self=a
             #det=absolute value(a)
             det=self[0][0]
             if det < 0:
@@ -61,8 +59,8 @@ class Matrix(object):
         if not self.is_square():
             raise(ValueError, "Cannot calculate the trace of a non-square matrix.")
 
-        #trace of self is sum of main diagonal elements
-        #on main diagonal i=j
+        #trace of self is the sum of main diagonal elements
+        #on the main diagonal i=j
         tr=0
         for i in range(self.w):
             tr=tr+self[i][i]
@@ -82,14 +80,11 @@ class Matrix(object):
             det=self.determinant()
             inv = zeroes((self.w),(self.h))      
             inv[0][0]=(1/det)
-            #inv=(1/self[0][0])
         elif self.h==2:   
             I=identity(self.h)
             tr=self.trace()
             A = self.g
-            #print((tr*I)-A)
             det=self.determinant()
-            #print(1/det)     
             inv = zeroes((self.w),(self.h))       
             inv=(1/det)*((tr*I)-A)
             
@@ -186,7 +181,6 @@ class Matrix(object):
         """
         Defines the behavior of * operator (matrix multiplication)
         """
-        #ml[i][j]=SUM(self[i][k] * other[k][j]) for k from 1 to other.h
         if(self.w==other.h):            
             ml = zeroes((self.h),(other.w))
             for i in range(self.h):
